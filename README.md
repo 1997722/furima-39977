@@ -1,7 +1,6 @@
 # DB設計
 
 ## users
-
 | Column             | Type       | Options                        |
 | ------------------ | ------     | -----------                    |
 | email              | string     | null:false, unique:true        |
@@ -21,25 +20,24 @@
 | Column             | Type       | Options                       |
 | ------------------ | ------     | -----------                   |
 | product            | string     | null:false                    |
-| price              | string     | null:false                    |
+| price              | integer    | null:false                    |
 | category_id        | integer    | null:false                    |
 | content            | text       | null:false                    |
-| seller             | string     | null:false                    |
 | state_id           | integer    | null:false                    |
 | postage_id         | integer    | null:false                    |
-| region_id          | integer    | null:false                    |
+| prefecture_id      | integer    | null:false                    |
 | shipping_date_id   | integer    | null:false                    |
 | user               | references | null:false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one buy
+- has_many buys
 
 ## buys
 | Column             | Type       | Options                       |
 | ------------------ | ------     | -----------                   |
-| items              | references | null:false, foreign_key: true |
-| users              | references | null:false, foreign_key: true |
+| item               | references | null:false, foreign_key: true |
+| user               | references | null:false, foreign_key: true |
 
 ### Association
 - belongs_to :item
@@ -51,7 +49,7 @@
 | ------------------ | ------     | -----------                   |
 | post_code          | string     | null:false                    |
 | tel_number         | string     | null:false                    |
-| ship_city          | string     | null:false                    |
+| prefecture_id      | integer    | null:false                    |
 | ship_address       | string     | null:false                    |
 | street_address     | string     | null:false                    |
 | building           | string     |                               |
