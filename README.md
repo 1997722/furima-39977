@@ -31,7 +31,7 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :buy
+- has_one :buy
 
 ## buys
 | Column             | Type       | Options                       |
