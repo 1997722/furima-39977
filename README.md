@@ -22,24 +22,22 @@
 | ------------------ | ------     | -----------                   |
 | product            | string     | null:false                    |
 | price              | string     | null:false                    |
-| category           | string     | null:false                    |
+| category_id        | integer    | null:false                    |
 | content            | text       | null:false                    |
 | seller             | string     | null:false                    |
-| state              | string     | null:false                    |
-| postage            | string     | null:false                    |
-| region             | string     | null:false                    |
-| shipping_date      | string     | null:false                    |
+| state_id           | integer    | null:false                    |
+| postage_id         | integer    | null:false                    |
+| region_id          | integer    | null:false                    |
+| shipping_date_id   | integer    | null:false                    |
 | user               | references | null:false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- has_one buys
+- belongs_to :user
+- has_one buy
 
 ## buys
 | Column             | Type       | Options                       |
 | ------------------ | ------     | -----------                   |
-| buyer              | string     | null:false                    |
-| purchase           | string     | null:false                    |
 | items              | references | null:false, foreign_key: true |
 | users              | references | null:false, foreign_key: true |
 
