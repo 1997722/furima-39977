@@ -10,9 +10,9 @@ RSpec.describe User, type: :model do
       it "nick_nameとemail、passwordとpassword_confirmation、family_name、first_name、family_name_kana、first_name_kana、birthdayが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it 'family_nameとfirst_nameが全角であれば登録できる' do
+      it 'family_nameとfirst_nameが全角(漢字・ひらがな・カタカナ）であれば登録できる' do
         @user.family_name = '桐生'
-        @user.first_name = 'ココ'
+        @user.first_name = 'ああココ'
         expect(@user).to be_valid
       end
       it 'family_name_kanaとfirst_name_kanaが全角であれば登録できる' do
@@ -20,6 +20,11 @@ RSpec.describe User, type: :model do
         @user.first_name_kana = 'イナニス'
         expect(@user).to be_valid
       end
+      it 'passwordが半角英数字混合であれば登録できる'
+        @user.password = 'aaa111'
+        @user.password_confirmation = 'aaa111'
+        @user.valid?
+        expect(@user).to be_valid
     end
     context '新規登録できない場合' do
       it "nick_nameが空では登録できない" do
@@ -56,6 +61,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+
       it '重複したemailが存在する場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)

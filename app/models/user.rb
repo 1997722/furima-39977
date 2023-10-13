@@ -6,16 +6,16 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :first_name,
-  format: { with: /\A([ぁ-んァ-ン一-龥]|ー)+\z/,message: '全角（漢字・ひらがな・カタカナ）での入力が必須です'},
+  format: { with: /\A([ぁ-んァ-ヶ一-龥々]|ー)+\z/,message: '全角（漢字・ひらがな・カタカナ）での入力が必須です'},
   presence: true
   validates :family_name,
-  format: { with: /\A([ぁ-んァ-ン一-龥]|ー)+\z/,message: '全角（漢字・ひらがな・カタカナ）での入力が必須です'},
+  format: { with: /\A([ぁ-んァ-ヶ一-龥々]|ー)+\z/,message: '全角（漢字・ひらがな・カタカナ）での入力が必須です'},
   presence: true
   validates :first_name_kana,
-  format: { with: /\A([ァ-ヶー－]|ー)+\z/,message: 'は全角（カタカナ）での入力が必須です'},
+  format: { with: /\A[ァ-ヶー]+\z/,message: 'は全角（カタカナ）での入力が必須です'},
   presence: true
   validates :family_name_kana,
-  format: { with: /\A([ァ-ヶー－]|ー)+\z/,message: 'は全角（カタカナ）での入力が必須です'},
+  format: { with: /\A[ァ-ヶー]+\z/,message: 'は全角（カタカナ）での入力が必須です'},
   presence: true
   validates :birthday,
   presence: true
