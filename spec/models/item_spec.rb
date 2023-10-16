@@ -84,6 +84,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
       end
+      it 'ユーザー情報がない場合は登録できない' do
+        @item = FactoryBot.build(:item, user: nil) 
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
     end 
   end
 end
