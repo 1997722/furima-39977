@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show,:move_to_index]
   before_action :authenticate_user!, except: [:index,:show]
   def index
     @item = Item.includes(:user).order("created_at DESC")
@@ -19,10 +18,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-  end
-  
-  def set_item
-  @item = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   private
