@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_date
   belongs_to :state
   belongs_to :user 
-  #has_one :buy
+  has_one :buy
   has_one_attached :image
 
   with_options presence: true do
@@ -23,5 +23,4 @@ class Item < ApplicationRecord
     validates :shipping_date_id
   end
   validates :price, numericality: true
-
 end
