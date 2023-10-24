@@ -35,6 +35,6 @@ class BuysController < ApplicationController
 
   def non_buyed_item
     @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user == @item.user.id || @item.buy.present?
+    redirect_to root_path if current_user.id == @item.user.id || @item.buy.present?
   end
 end

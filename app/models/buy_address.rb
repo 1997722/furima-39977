@@ -9,7 +9,7 @@ class BuyAddress
     validates :tel_number, format: { with: /\A\d{10,11}\z/ }
     validates :ship_address
     validates :street_address
-    validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+    validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
     validates :token
   end
   def save
