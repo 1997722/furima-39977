@@ -1,6 +1,6 @@
-const pay = () => {
-  const publicKey = gon.public_key
-  const payjp = Payjp(publicKey) 
+window.addEventListener("turbo:load", function() {
+  const publicKey = gon.public_key;
+  const payjp = Payjp(publicKey);
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
@@ -10,8 +10,9 @@ const pay = () => {
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
 
-  const form = document.getElementById('charge-form')
+  const form = document.getElementById('charge-form');
   form.addEventListener("submit", (e) => {
+    e.preventDefault();
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
       } else {
@@ -19,15 +20,8 @@ const pay = () => {
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        document.getElementById("charge-form").submit();
       }
-      numberElement.clear();
-      expiryElement.clear();
-      cvcElement.clear();
-      document.getElementById("charge-form").submit();
     });
-    e.preventDefault();
   });
-};
-
-window.addEventListener("turbo:load", pay);
-window.addEventListener("turbo:render", pay);
+});

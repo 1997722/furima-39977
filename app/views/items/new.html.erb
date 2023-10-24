@@ -5,9 +5,9 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @item, url:items_path, local: true do |f| %>
+    <%= form_with model: @item, url:items_path, data: { turbo: false }, local: true do |f| %>
 
-    <%= render 'shared/error_messages', model: f.object %>
+      <%= render 'shared/error_messages', model: f.object %>
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -20,7 +20,6 @@
           クリックしてファイルをアップロード
         </p>
         <%= f.file_field :image, id:"item-image" %>
-      </div>
       <%= image_tag @item.image, class: 'item-image' if @item.image.attached? %>
       </div>
     </div>
@@ -111,10 +110,10 @@
           <span>販売利益</span>
           <span>
             <span id='profit'></span>円
+            </div>
           </span>
         </div>
       </div>
-    </div>
     <%# /販売価格 %>
 
     <%# 注意書き %>
