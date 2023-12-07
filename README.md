@@ -1,5 +1,6 @@
 # DB設計
 
+
 ## users
 | Column             | Type       | Options                        |
 | ------------------ | ------     | -----------                    |
@@ -15,6 +16,7 @@
 ### Association
 - has_many :items
 - has_many :buys
+
 
 ## items
 | Column             | Type       | Options                       |
@@ -33,6 +35,7 @@
 - belongs_to :user
 - has_one :buy
 
+
 ## buys
 | Column             | Type       | Options                       |
 | ------------------ | ------     | -----------                   |
@@ -43,6 +46,7 @@
 - belongs_to :item
 - belongs_to :user
 - has_one :address
+
 
 ## addresses
 | Column             | Type       | Options                       |
